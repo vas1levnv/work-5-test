@@ -71,10 +71,26 @@ export default {
 
 .sidebar-list-item {
   color: #7D7D7D;
+  position: relative;
+
+  &:before {
+    transition: all 0.3s ease;
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -25px;
+    height: 200%;
+    width: 4px;
+    background: transparent;
+  }
 
   &:hover {
     .sidebar-list-item-img {
       filter: brightness(0) saturate(100%) invert(43%) sepia(89%) saturate(1175%) hue-rotate(216deg) brightness(81%) contrast(96%);
+    }
+
+    &:before {
+      background: #6666CC;
     }
 
     .sidebar-list-item-text {
@@ -111,10 +127,10 @@ export default {
     top: 0;
     left: 0;
     transform: translateX(-100%);
-    transition:  all 0.3s ease;
+    transition: all 0.3s ease;
   }
 
-  .sidebar-active{
+  .sidebar-active {
     transform: translateX(0);
   }
 }
