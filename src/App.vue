@@ -16,19 +16,21 @@ export default {
   },
   methods: {
     onSidebarActive() {
-     !this.isActiveSidebar ? this.isActiveSidebar = true : this.isActiveSidebar = false
+      !this.isActiveSidebar ? this.isActiveSidebar = true : this.isActiveSidebar = false
     }
   }
 }
 </script>
 
 <template>
-  <div class="app">
+  <div class="app"
+       :class="{'app-lock': isActiveSidebar === true}">
     <side-bar :sidebar="isActiveSidebar"></side-bar>
+    <div class="sidebar-field d-none d-lg-block"></div>
     <div class="header d-lg-flex align-items-center justify-content-between">
       <breadcrumb></breadcrumb>
       <header-person></header-person>
-      <div class="btn-sidebar d-lg-none pe-3" @click="onSidebarActive">
+      <div class="btn-sidebar d-lg-none" @click="onSidebarActive">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
              viewBox="0 0 16 16">
           <path fill-rule="evenodd"
@@ -50,12 +52,13 @@ export default {
 
 .app {
   min-height: 100vh;
+  height: 100%;
   max-width: 100vw;
   background: #F8FAFF;
   font-size: 0.875rem;
   font-weight: 500;
   display: grid;
-  grid-template-columns: auto  1fr;
+  grid-template-columns: 256px  1fr;
   grid-template-rows: auto  1fr;
   gap: 59px;
   color: #7D7D7D;
@@ -63,17 +66,24 @@ export default {
   overflow-x: hidden;
 }
 
-.btn-sidebar{
+.app-lock {
+  overflow: hidden;
+}
+
+.btn-sidebar {
   cursor: pointer;
   width: 30px;
   height: 30px;
 }
 
-.btn-sidebar svg{
+.btn-sidebar svg {
   width: 100%;
   height: 100%;
 }
 
+.sidebar-field {
+  grid-row: 1/3;
+}
 
 @media (max-width: 992px) {
   .app {
@@ -82,8 +92,8 @@ export default {
     grid-template-rows: auto 1fr;
   }
 
-  .btn-sidebar{
-    position: absolute;
+  .btn-sidebar {
+    position: fixed;
     top: 1rem;
     right: 1rem;
   }

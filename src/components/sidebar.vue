@@ -64,8 +64,8 @@ export default {
   height: 100%;
   padding: 30px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  grid-row: 1/3;
-  position: relative;
+  position: fixed;
+  top: 0;
   z-index: 20;
 }
 
@@ -123,8 +123,6 @@ export default {
 @media (max-width: 992px) {
 
   .sidebar {
-    position: absolute;
-    top: 0;
     left: 0;
     transform: translateX(-100%);
     transition: all 0.3s ease;
